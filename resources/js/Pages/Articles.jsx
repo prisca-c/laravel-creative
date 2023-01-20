@@ -139,7 +139,7 @@ export default function Dashboard(props) {
 
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <p className="text-sm text-gray-900">Filter</p>
+                    <p className="text-sm text-gray-900">Filter Tag</p>
                     <div className="flex items-center gap-5">
                         <select
                             className="bg-white border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
