@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Inertia\Inertia;
 
 class UserController extends Controller
 {
@@ -15,11 +16,11 @@ class UserController extends Controller
         $this->user = $user;
     }
 
-    public function index(): \Illuminate\Support\Collection
+    public function index(User $user): \Inertia\Response
     {
-        return DB::table('users')
-        ->orderBy('created_at', 'desc')
-        ->get();
+        return Inertia::render('Users',[
+            'users'=> $user->orderByDesc('created_at')->get()
+        ]);
     }
 
     public function show($id): \Illuminate\Support\Collection

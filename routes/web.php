@@ -32,19 +32,14 @@ Route::get('/', function () {
 
 Route::middleware([ 'auth', 'verified' ])->group(function () {
     Route::get('/dashboard', [ArticleController::class,'published'])->name('dashboard');
-    Route::get('/articles', function (Article $article,) {
-        return Inertia::render('Articles',[
-            'articles' => $article->with('user', 'tags', 'comments')
-                ->orderByDesc('created_at')
-                ->get(),
-            'tags'=> Tag::all(),
-        ]);
-    })->name('articles');
+    Route::get('/articles', [ArticleController::class, 'index'])->name('articles');
     Route::post('/articles', [ArticleController::class, 'store'])->name('articles.store');
     Route::get('/articles/article', [ArticleController::class, 'user'])->name('articles.user');
     Route::delete('/articles/{id}', [ArticleController::class, 'destroy'])->name('articles.destroy');
     Route::put('/articles/{id}', [ArticleController::class, 'update'])->name('articles.update');
     Route::get('/articles/tag/{tag}', [ArticleController::class, 'tag'])->name('articles.tag');
+
+    Route::get('/users', [UserController::class, 'index'])->name('users');
 });
 
 
