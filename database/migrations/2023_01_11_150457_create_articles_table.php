@@ -18,14 +18,9 @@ return new class extends Migration
             $table->string('title');
             $table->text('description');
             $table->text('content');
-            $table->uuid('user_id');
+            $table->foreignUuid('user_id')->constrained('users')->onDelete('cascade');
             $table->dateTimeTz('published_at')->default(now());
             $table->timestamps();
-
-            $table->foreign('user_id')
-                ->references('id')
-                ->on('users')
-                ->onDelete('cascade');
         });
     }
 
