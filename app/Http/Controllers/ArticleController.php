@@ -22,9 +22,14 @@ class ArticleController extends Controller
         $this->article = $article;
     }
 
-    public function index(): array
+    public function index(Article $article): \Inertia\Response
     {
-        return $this->article->all()->toArray();
+        return Inertia::render('Articles',[
+            'articles' => $article->with('user', 'tags', 'comments')
+                ->orderByDesc('created_at')
+                ->get(),
+            'tags'=> Tag::all(),
+        ]);
     }
 
     public function show(Request $request): Collection

@@ -13,7 +13,7 @@ export default function Dashboard(props) {
     const [filter, setFilter] = useState('all');
 
     useEffect(() => {
-        if(props.auth.user.is_admin === 1) {
+        if(props.auth.user.is_admin) {
             if(filter === 'all') {
                 axios.get(route('articles.index')).then((response) => {
                     setArticles(response.data);
@@ -107,10 +107,10 @@ export default function Dashboard(props) {
             errors={props.errors}
             header={
             <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-                {props.auth.user.is_admin === 1 ? 'Articles' : 'My Article'}
+                {props.auth.user.is_admin ? 'Articles' : 'My Article'}
             </h2>}
         >
-            <Head title={props.auth.user.is_admin === 1 ? 'Articles' : 'My Article'} />
+            <Head title={props.auth.user.is_admin ? 'Articles' : 'My Article'} />
 
             <ArticleStoreForm
                 showForm={showForm}
@@ -163,7 +163,7 @@ export default function Dashboard(props) {
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-4">
                         <h2 className="text-2xl font-bold p-6 text-gray-900 text-center">
-                            {props.auth.user.is_admin === 1 ? 'Latest Created Articles' : 'My Articles'}
+                            {props.auth.user.is_admin ? 'Latest Created Articles' : 'My Articles'}
                         </h2>
                     </div>
                     <div className="grid grid-cols-2 gap-4">

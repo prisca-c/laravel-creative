@@ -10,7 +10,7 @@ export default function Authenticated({ auth, admin, header, children }) {
     const adminLinks = () => {
         return (
             <>
-                <NavLink href={route('dashboard.users')} active={route().current('dashboard.users')}>
+                <NavLink href={route('users')} active={route().current('users')}>
                     Users
                 </NavLink>
             </>
@@ -33,7 +33,7 @@ export default function Authenticated({ auth, admin, header, children }) {
                                     Dashboard
                                 </NavLink>
                                 <NavLink href={route('articles')} active={route().current('articles')}>
-                                    {auth.user.is_admin === 1 ? 'Articles' : 'My Articles'}
+                                    {auth.user.is_admin ? 'Articles' : 'My Articles'}
                                 </NavLink>
                                 {auth.user.is_admin ? adminLinks() : null /* Admin NavLinks */}
                             </div>
